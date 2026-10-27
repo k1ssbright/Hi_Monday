@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'TT Bluescreens';
+    src: url("../assets/fonts/tt-bluescreens/TT Bluescreens Trial Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TT Bluescreens';
+    src: url("../assets/fonts/tt-bluescreens/TT Bluescreens Trial Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

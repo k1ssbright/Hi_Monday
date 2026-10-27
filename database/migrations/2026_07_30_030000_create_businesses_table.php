@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('businesses', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->tinyInteger('business_type')->comment('1 = บริษัท , 2 = ห้างหุ้นส่วน , 3 = บุคคลธรรมดา');
+            $table->string('business_tax_no', 13)->nullable()->comment('เลขประจำตัวผู้เสียภาษี');
+            $table->tinyInteger('business_vat_status')->comment('สถานะจดภาษีมูลค่าเพิ่ม 1 = จดภาษีมูลค่าเพิ่ม , 0 = ยังไม่เข้าระบบภาษีมูลค่าเพิ่ม ');
+            
+            $table->string('business_code')->nullable()->comment('รหัสธุรกิจ');
+            $table->string('business_name_th')->nullable()->comment('ชื่อธุรกิจ');
+
+            $table->tinyInteger('business_en_status')->nullable()->comment('0 = ไม่ใช้ข้อมูลภาษาอังกฤษ , 1 = ใช้ข้อมูลภาษาอังกฤษ');
+            $table->string('business_name_en')->nullable()->comment('ชื่อธุรกิจ ภาษาอังกฤษ');
+            $table->foreignUuid('create_by_employee_branch')->nullable();
+            $table->foreignUuid('create_by_user')->nullable()->constrained('users');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('businesses');
+    }
+};
